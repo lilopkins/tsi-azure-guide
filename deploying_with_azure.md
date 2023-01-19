@@ -5,6 +5,7 @@
 </div>
 
 ---
+
 ## Contents
 1. [Host the backend API](#host-the-backend-api)
 2. [Host the database](#host-the-database)
@@ -24,7 +25,7 @@ When your browser appears, sign in to Azure.
 
 When asked, select Linux and Java 17:
 
-![Linux and Java 17 selected](images/images-002.png)
+![Linux and Java 17 selected](images/initial_settings.png)
 
 For the pricing tier, select either Basic 1 (B1, option 1) or Free 1 (F1, option 8). I recommend the latter to save on using your free Azure credit.
 
@@ -113,6 +114,12 @@ Search for `log_bin_trust_function_creators` and set to ON.
 ![log_bin_trust_function_creators](images/log_bin_trust_function_creators.png)
 
 > **Information**: This allows the `sakila-schema.sql` script to load the sakila database in to the server without being blocked by the default Azure set-up, which prevents triggers being used from users not granted the SUPER permission.
+
+Search for `require_secure_transport` and set to OFF.
+
+<!-- TODO: This would benefit from a screenshot! -->
+
+> **Information**: This allows us to connect without having to worry about authenticating with certificates. If you want a challenge, set this back to ON and start using certificates! [Here](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/how-to-connect-tls-ssl) is a good place to start.
 
 Select "Save".
 
